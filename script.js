@@ -63,6 +63,17 @@
     if (e.key === "Escape" && navOverlay.classList.contains("is-open")) closeNav();
   });
 
+  /* ---------------- active page highlight in menu ---------------- */
+
+  (function () {
+    var current = location.pathname.split("/").pop();
+    if (current === "") current = "index.html";
+    navOverlay.querySelectorAll(".nav-list a").forEach(function (a) {
+      var href = (a.getAttribute("href") || "").split("/").pop();
+      if (href === current) a.classList.add("is-current");
+    });
+  })();
+
   /* ---------------- scroll reveal ---------------- */
 
   var revealEls = document.querySelectorAll(".reveal");

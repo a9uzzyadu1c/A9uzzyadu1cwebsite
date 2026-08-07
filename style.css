@@ -268,6 +268,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .nav-list a:hover { color: var(--text-muted); gap: 1.6rem; }
 .nav-list a:hover .nav-list__title { color: var(--text); }
 
+/* current-page indicator */
+.nav-list a.is-current { border-bottom-color: var(--text-faint); }
+.nav-list a.is-current .nav-list__title { color: var(--text-muted); }
+.nav-list a.is-current .nav-list__desc::after { content: " · here"; }
+
 .nav-overlay__footer {
   display: flex;
   justify-content: space-between;
@@ -378,6 +383,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .section--alt { background: var(--bg-soft); max-width: none; }
 .section--alt > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
 
+/* standalone page sections get a little extra breathing room under the sticky header */
+.page-section { padding-top: clamp(3.5rem, 7vw, 6rem); min-height: calc(100svh - 140px); }
+
 .section-title { font-size: var(--fs-h2); margin-top: .6rem; max-width: 14ch; }
 .section-lede {
   font-size: var(--fs-lede);
@@ -474,6 +482,38 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .email-copy:hover { background: var(--surface-2); transform: translateY(-2px); }
 .email-copy svg { color: var(--text-faint); }
 
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+  margin-top: 1.4rem;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .75rem 1.35rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: .92rem;
+  font-weight: 500;
+  transition: background .3s var(--ease-out), transform .3s var(--ease-out), border-color .3s var(--ease-out);
+}
+.social-link:hover {
+  background: var(--surface-2);
+  transform: translateY(-2px);
+  border-color: var(--text-faint);
+}
+.social-link__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  transition: color .3s var(--ease-out);
+}
+.social-link:hover .social-link__icon { color: var(--text); }
+
 /* ---------------- footer ---------------- */
 
 .site-footer {
@@ -516,9 +556,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     animation-duration: .001ms !important;
     transition-duration: .001ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
-  .nav-list a { transform: none; }
-}
   .reveal { opacity: 1; transform: none; }
   .nav-list a { transform: none; }
 }
